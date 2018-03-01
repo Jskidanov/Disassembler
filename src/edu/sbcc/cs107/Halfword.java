@@ -22,7 +22,8 @@ public class Halfword {
 	 * @param data
 	 */
 	public Halfword(int address, int data) {
-		/* Your code here */
+		this.address = address;
+		this.data = data;
 	}
 	
 	/** 
@@ -35,9 +36,35 @@ public class Halfword {
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
+	
+	/**
+	 * Since the hex values of the address and data have been converted to base 10 for this class
+	 * I am ensuring there are buffers of 0s on the left side if the size of each hex String does not match the size
+	 * of the desired data type. (For example, "0x400 -> 0x0400")
+	 */
 	public String toString() {
-		/* Your code here */
-		return "Replace this";
+		
+		
+		String addressHex = Integer.toHexString(address).toUpperCase(); // Accurate, but not necessarily a HalfWord
+		String dataHex = Integer.toHexString(data).toUpperCase(); //Accurate, but necessarily a Byte
+		
+		String addressHexBuffer = "";    
+		String dataHexBuffer = "";     
+		
+		for (int i = addressHex.length(); i < 8; i++){
+			
+			addressHexBuffer += "0";
+			
+		}
+		
+		for (int i = dataHex.length(); i < 4; i++){
+			
+			dataHexBuffer += "0";
+		}
+		
+		
+		return addressHexBuffer + addressHex + " " + dataHexBuffer + dataHex;
+		
 	}
 
 	/**
@@ -46,8 +73,7 @@ public class Halfword {
 	 * @return
 	 */
 	public int getAddress() {
-		/* Your code here */
-		return 0;
+		return this.address;
 	}
 	
 	/**
@@ -56,8 +82,7 @@ public class Halfword {
 	 * @return
 	 */
 	public int getData() {
-		/* Your code here */
-		return 0;
+		return this.data;
 	}
 
 }

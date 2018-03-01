@@ -23,8 +23,10 @@ public class Main {
 		Halfword hw = null;  
 		while ((hw = hf.getNextHalfword()) != null)  
 		{ 
+			System.out.println(hw.toString());
+			
 			if(hw.getAddress() >= 0x400) {
-				System.out.printf("%s     %s\n", hw, d.dissassembleToString(hw));
+				System.out.printf("%s     %s\n", hw.toString(), d.dissassembleToString(hw)); 
 				if(hw.getData() == 0xE7FE) {
 					break;
 				}
